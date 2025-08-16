@@ -1,0 +1,60 @@
+{
+  "name": "react-host-template",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A template app using react for host application using module federation.",
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1"
+  },
+  "devDependencies": {
+    "external-remotes-plugin": "^1.0.0",
+    "webpack-bundle-analyzer": "^4.10.1",
+    "webpack-cli": "^5.1.4"
+  },
+  "scripts": {
+    "build": "webpack --config config/webpack/webpack.prod.js",
+    "build:dev": "webpack --config config/webpack/webpack.dev.js",
+    "clean": "rm -rf dist",
+    "clean:pkgs": "rm -rf node_modules yarn.lock package-lock.json",
+    "kill": "lsof -ti:3000 | xargs kill -9",
+    "lint": "eslint --max-warnings=0 --ext=tsx,ts,js ./src",
+    "lint:fix": "eslint --fix --max-warnings=0 --ext=tsx,ts,js ./src",
+    "test": "jest --config ./jest.config.js",
+    "test:watch": "jest --config ./jest.config.js --watch --detectOpenHandles",
+    "test:coverage": "jest --config ./jest.config.js --coverage",
+    "test:watch-changed": "jest --watch --onlyChanged --config ./jest.config.js",
+    "test:coverage-changed": "jest --coverage --onlyChanged --config ./jest.config.js",
+    "test:clean": "rm -rf coverage",
+    "precheck": "npm run lint && npm run test",
+    "precheck:fix": "npm run lint:fix && npm run test",
+    "serve": "serve dist -p 3000",
+    "start": "webpack-cli serve --config config/webpack/webpack.dev.js",
+    "check-types": "tsc"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run precheck"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/malak29/react-host-template.git"
+  },
+  "keywords": [
+    "react",
+    "host",
+    "template"
+  ],
+  "author": "malak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/malak29/react-host-template/issues"
+  },
+  "homepage": "https://github.com/malak29/react-host-template#readme"
+}
